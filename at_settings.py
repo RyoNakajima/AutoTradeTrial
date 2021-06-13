@@ -7,6 +7,8 @@ password = "kabuステーションのログインパスワードを入力"
 
 #####
 # 以下の内容を確認＋修正必要
+
+
 symbol = "XXXX"
 qty = 1
 margin = 200
