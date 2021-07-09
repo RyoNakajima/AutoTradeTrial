@@ -1,9 +1,12 @@
 import datetime
 import sys
+import getpass
 
 port = "18080"
-apiPassword = "kabuステーションのAPIパスワードを入力"
-password = "kabuステーションのログインパスワードを入力"
+# apiPassword = "kabuステーションのAPIパスワードを入力"
+apiPassword = getpass.getpass(prompt='apiのpwd:')
+# password = "kabuステーションのログインパスワードを入力"
+password = getpass.getpass(prompt='kabuステーションのpwd:')
 
 #####
 # 以下の内容を確認＋修正必要
@@ -38,7 +41,8 @@ sd_threshold = 100.0
 if len(sys.argv) >= 2:
     if sys.argv[1] == "debug":
         port = "18081"
-        apiPassword = "kabuステーションのデバッグ用APIパスワードを入力"
+        # apiPassword = "kabuステーションのデバッグ用APIパスワードを入力"
+        apiPassword = getpass.getpass(prompt='デバッグ用pwd:')
         #デバッグ時に変更したい設定値を以下に入力
         intervalOrders = 1
 

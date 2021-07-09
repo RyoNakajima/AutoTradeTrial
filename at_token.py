@@ -1,20 +1,20 @@
 import urllib.request
 import json
 import pprint
-import sys
-import rsi1570_register
-import rsi1570_settings
+#import sys
+import at_register
+import at_settings
 
-obj = { 'APIPassword': rsi1570_settings.apiPassword }
+obj = { 'APIPassword': at_settings.apiPassword }
 json_data = json.dumps(obj).encode('utf8')
 
-url = 'http://localhost:' + rsi1570_settings.port + '/kabusapi/token'
+url = 'http://localhost:' + at_settings.port + '/kabusapi/token'
 
 req = urllib.request.Request(url, json_data, method='POST')
 req.add_header('Content-Type', 'application/json')
 
 try:
-    print('###rsi1570_token')
+    print('###at_token')
     with urllib.request.urlopen(req) as res:
         print(res.status, res.reason)
         for header in res.getheaders():
@@ -23,9 +23,9 @@ try:
         content = json.loads(res.read())
         pprint.pprint(content)
         token = content["Token"]
-        rsi1570_settings.token = token
+        at_settings.token = token
         #PUSh配信銘柄登録
-        rsi1570_register.register()
+        at_register.register()
 except urllib.error.HTTPError as e:
     print(e)
     content = json.loads(e.read())
